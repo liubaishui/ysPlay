@@ -110,6 +110,7 @@ public class YsPlayPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 if(ezPlayer != null){
                     //先停止
                     ezPlayer.stopPlayback();
+                    ezPlayer.release();
                     ezPlayer = null;
                 }
                 //flutter端的传参
@@ -170,6 +171,7 @@ public class YsPlayPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 if(ezPlayer != null){
                     //先停止
                     ezPlayer.stopRealPlay();
+                    ezPlayer.release();
                     ezPlayer = null;
                 }
                 //flutter端的传参
@@ -179,7 +181,7 @@ public class YsPlayPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
 
                 //注册播放器
                 ezPlayer = initEzPlayer(deviceSerial,verifyCode,cameraNo);
-
+                ezPlayer.closeSound();
                 boolean realResult = ezPlayer.startRealPlay();
                 LogUtils.d("开始直播"+(realResult?"成功":"失败"));
                 result.success(realResult);
@@ -196,19 +198,28 @@ public class YsPlayPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 break;
             /// 打开声音
             case "openSound":
-                if(ezPlayer==null) return;
+                if(ezPlayer==null) {
+                    result.success(false);
+                    return;
+                }
                 boolean openResult = ezPlayer.openSound();
                 result.success(openResult);
                 break;
             /// 关闭声音
             case "closeSound":
-                if(ezPlayer==null) return;
+                if(ezPlayer==null) {
+                    result.success(false);
+                    return;
+                }
                 boolean closeResult = ezPlayer.closeSound();
                 result.success(closeResult);
                 break;
             /// 截屏
             case "capturePicture":
-                if(ezPlayer==null) return;
+                if(ezPlayer==null) {
+                    result.success(false);
+                    return;
+                }
                 new Thread(() -> {
                     //图片保存路径
                     String filePath = Environment.getExternalStorageDirectory().getPath() + "/DCIM/" +
@@ -223,7 +234,10 @@ public class YsPlayPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 break;
             /// 开始录像
             case "start_record":
-                if(ezPlayer==null) return;
+                if(ezPlayer==null) {
+                    result.success(false);
+                    return;
+                }
                 // 先结束本地直播流录像
                 ezPlayer.stopLocalRecord();
 
@@ -248,7 +262,10 @@ public class YsPlayPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 break;
             /// 停止录像
             case "stop_record":
-                if(ezPlayer==null) return;
+                if(ezPlayer==null) {
+                    result.success(false);
+                    return;
+                }
                 boolean stopRecordResult = ezPlayer.stopLocalRecord();
                 LogUtils.d("停止录像"+(stopRecordResult?"成功":"失败"));
                 result.success(stopRecordResult);
