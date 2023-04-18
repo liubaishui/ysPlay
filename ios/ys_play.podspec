@@ -14,8 +14,8 @@ A new Flutter project.
   s.author           = { 'Your Company' => 'email@example.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
-  # s.dependency 'EZOpenSDK' ,'5.1.3'
-  s.dependency 'EZOpenSDK' , :git => 'https://github.com/liubaishui/SDK-iOS', :commit => '5290861e450f5c787b16d346af0421f31db52028'
+  s.dependency 'EZOpenSDK' ,'5.1.2'
+  # s.dependency 'EZOpenSDK' , :git => 'https://github.com/liubaishui/SDK-iOS', :commit => '5290861e450f5c787b16d346af0421f31db52028'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
   s.platform = :ios, '11.0'
