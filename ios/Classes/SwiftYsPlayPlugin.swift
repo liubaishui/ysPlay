@@ -392,10 +392,12 @@ public class SwiftYsPlayPlugin: NSObject, FlutterPlugin,EZPlayerDelegate{
         case 1:
             print("\(TAG)直播开始")
             dict.updateValue(true, forKey: "isSuccess")
+            player.closeSound()
             break
         case 11:
             print("\(TAG)回放开始")
             dict.updateValue(true, forKey: "isSuccess")
+            player.closeSound()
             break
         case 4:
             print("\(TAG)对讲开始")
