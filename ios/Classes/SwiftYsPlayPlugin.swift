@@ -172,8 +172,8 @@ public class SwiftYsPlayPlugin: NSObject, FlutterPlugin,EZPlayerDelegate{
             }
             // 注册播放器
             ezPlayer = createEzPlayer(deviceSerial: deviceSerial!, cameraNo: cameraNo, verifyCode: verifyCode)
-            ezPlayer!.closeSound()
             let isSuccess = ezPlayer!.startRealPlay()
+            ezPlayer!.closeSound()
             print("\(TAG) 开始直播 \(isSuccess ? "成功" : "失败")")
             result(isSuccess)
         } else if call.method == "stopRealPlay" {
