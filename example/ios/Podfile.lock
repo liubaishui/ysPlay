@@ -40,8 +40,8 @@ SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   network_info_plus: b78876159360f5580608c2cea620d6ceffabd0ad
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
-  ys_play: feb4bb0346a34c83646aafac159220512de2b160
+  ys_play: c975ce33d2f12f3a8dc8acf455770dcb4d31ca64
 
 PODFILE CHECKSUM: 87e75cff2e496afeda943caa2f162048e10dbaa4
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.11.0

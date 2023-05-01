@@ -117,16 +117,25 @@ class YsPlay {
   ///
   /// 有3个入参:
   /// 其中`deviceSerial`必传,`verifyCode`和`cameraNo`可选。
-  static Future<bool> startRealPlay({
-    required String deviceSerial,
-    String? verifyCode,
-    int? cameraNo,
-  }) async {
+  static Future<bool> startRealPlay(
+      {required String deviceSerial,
+      String? verifyCode,
+      int? cameraNo,
+      bool? useSubStream}) async {
     return await _channel.invokeMethod("startRealPlay", {
       'deviceSerial': deviceSerial,
       'verifyCode': verifyCode,
       'cameraNo': cameraNo,
+      'useSubStream': useSubStream ?? true
     });
+  }
+
+  /// 开始直播
+  ///
+  /// 有3个入参:
+  /// 其中`deviceSerial`必传,`verifyCode`和`cameraNo`可选。
+  static Future<bool> startRealPlayWithUrl({required String url}) async {
+    return await _channel.invokeMethod("startRealPlayWithUrl", {'url': url});
   }
 
   /// 停止直播

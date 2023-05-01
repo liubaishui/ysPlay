@@ -49,6 +49,8 @@ class YsPlayerState extends State<YsPlayer> {
   late double height;
   late double width;
 
+  int videoLevel = 0;
+
   YsPlayStatus ysPlayStatus = YsPlayStatus.onPrepareing;
 
   String? errorInfo; //播放错误提示
@@ -175,12 +177,14 @@ class YsPlayerState extends State<YsPlayer> {
         cameraNo: cameraNo,
       );
     } else if (mediaType == YsMediaType.real) {
+      var usesubstream = videoLevel == 1 ? false : true;
+      print('usesubstream: $usesubstream');
       // 直播
       return await YsPlay.startRealPlay(
-        deviceSerial: deviceSerial,
-        verifyCode: verifyCode,
-        cameraNo: cameraNo,
-      );
+          deviceSerial: deviceSerial,
+          verifyCode: verifyCode,
+          cameraNo: cameraNo,
+          useSubStream: usesubstream);
     } else {
       return false;
     }
@@ -239,16 +243,17 @@ class YsPlayerState extends State<YsPlayer> {
   /// 设置清晰度
   void onSelectLevelHandle(int i) async {
     if (mediaType == YsMediaType.real) {
-      bool result = await YsPlay.setVideoLevel(
-        deviceSerial: deviceSerial,
-        videoLevel: i,
-      );
-      if (result) {
-        // 关闭直播
-        await YsPlay.stopRealPlay();
-        // 打开直播
-        onRePlay();
-      }
+      // bool result = await YsPlay.setVideoLevel(
+      //   deviceSerial: deviceSerial,
+      //   videoLevel: i,
+      // );
+      videoLevel = i;
+      // if (result) {
+      // 关闭直播
+      await YsPlay.stopRealPlay();
+      // 打开直播
+      onRePlay();
+      // }
     }
   }
 

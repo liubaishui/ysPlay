@@ -121,7 +121,7 @@ public class YsPlayPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 Long endTime = call.argument("endTime");
 
                 //初始化播放器
-                ezPlayer = initEzPlayer(deviceSerial,verifyCode,cameraNo);
+                ezPlayer = initEzPlayer(deviceSerial,verifyCode,cameraNo, true);
 
                 if(startTime != null && endTime != null){
                     final Calendar startCalendar = Calendar.getInstance();
@@ -178,13 +178,33 @@ public class YsPlayPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 deviceSerial = call.argument("deviceSerial");
                 verifyCode = call.argument("verifyCode");
                 cameraNo = call.argument("cameraNo");
+                Boolean useSubStream = call.argument("useSubStream");
+
 
                 //注册播放器
-                ezPlayer = initEzPlayer(deviceSerial,verifyCode,cameraNo);
+                ezPlayer = initEzPlayer(deviceSerial,verifyCode,cameraNo, useSubStream);
                 ezPlayer.closeSound();
                 boolean realResult = ezPlayer.startRealPlay();
                 LogUtils.d("开始直播"+(realResult?"成功":"失败"));
                 result.success(realResult);
+                break;
+            /// 开启直播
+            case "startRealPlayWithUrl":
+                if(ezPlayer != null){
+                    //先停止
+                    ezPlayer.stopRealPlay();
+                    ezPlayer.release();
+                    ezPlayer = null;
+                }
+                //flutter端的传参
+                String url = call.argument("url");
+
+                //注册播放器
+                ezPlayer = initEzPlayerWithUrl(url);
+                ezPlayer.closeSound();
+                boolean realResult2 = ezPlayer.startRealPlay();
+                LogUtils.d("开始直播"+(realResult2?"成功":"失败"));
+                result.success(realResult2);
                 break;
             /// 停止直播
             case "stopRealPlay":
@@ -430,16 +450,37 @@ public class YsPlayPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
 
     /**
      * 注册播放器
+     * @param url :url，必传。
+     * @return : 播放组件
+     */
+    private EZPlayer initEzPlayerWithUrl(String url){
+        EZPlayer player = EZOpenSDK.getInstance().createPlayerWithUrl(url);
+        // 设置Handler, 该handler将被用于从播放器向handler传递消息
+        player.setHandler(new YsPlayViewHandler(ysResultListener));
+        // 设置播放器的显示Surface
+        player.setSurfaceEx(textureView.getSurfaceTexture());
+
+        LogUtils.d("播放器初始化成功");
+        return player;
+    }
+
+    /**
+     * 注册播放器
      * @param deviceSerial :序列号，一般通过扫描设备二维码获取，必传。
      * @param verifyCode :视频加密密码，默认为设备的6位验证码，可选。
      * @param cameraNo :通道号,默认为1，可选。
      * @return : 播放组件
      */
-    private EZPlayer initEzPlayer(String deviceSerial,String verifyCode,Integer cameraNo){
+    private EZPlayer initEzPlayer(String deviceSerial,String verifyCode,Integer cameraNo, boolean useSubStream){
         int cNo = 1;
         if(cameraNo != null) cNo = cameraNo;
-
-        EZPlayer player = EZOpenSDK.getInstance().createPlayer(deviceSerial, cNo);
+        if (useSubStream) {
+            LogUtils.d("initEzPlayer with usesubstream");
+        } else {
+            LogUtils.d("initEzPlayer not with usesubstream");
+        }
+        
+        EZPlayer player = EZOpenSDK.getInstance().createPlayer(deviceSerial, cNo, useSubStream);
         // 设置Handler, 该handler将被用于从播放器向handler传递消息
         player.setHandler(new YsPlayViewHandler(ysResultListener));
         // 设置播放器的显示Surface

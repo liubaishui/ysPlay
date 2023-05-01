@@ -111,7 +111,7 @@ public class SwiftYsPlayPlugin: NSObject, FlutterPlugin,EZPlayerDelegate{
                 return
             }
             // 注册播放器
-            ezPlayer = createEzPlayer(deviceSerial: deviceSerial!, cameraNo: cameraNo, verifyCode: verifyCode)
+            ezPlayer = createEzPlayer(deviceSerial: deviceSerial!, cameraNo: cameraNo, verifyCode: verifyCode, useSubStream: true)
             
             let recordFile = EZDeviceRecordFile()
             recordFile.type = 1;
@@ -165,13 +165,34 @@ public class SwiftYsPlayPlugin: NSObject, FlutterPlugin,EZPlayerDelegate{
             let deviceSerial = data?["deviceSerial"] as? String //设备序列号
             let cameraNo = data?["cameraNo"] as? Int
             let verifyCode = data?["verifyCode"] as? String
+            let useSubStream = data?["useSubStream"] as? Bool
             
             if deviceSerial == nil {
                 result(false)
                 return
             }
             // 注册播放器
-            ezPlayer = createEzPlayer(deviceSerial: deviceSerial!, cameraNo: cameraNo, verifyCode: verifyCode)
+            ezPlayer = createEzPlayer(deviceSerial: deviceSerial!, cameraNo: cameraNo, verifyCode: verifyCode, useSubStream: useSubStream)
+            let isSuccess = ezPlayer!.startRealPlay()
+            ezPlayer!.closeSound()
+            print("\(TAG) 开始直播 \(isSuccess ? "成功" : "失败")")
+            result(isSuccess)
+        } else if call.method == "startRealPlayWithUrl" {
+            if(ezPlayer != nil){
+                // 先停止
+                ezPlayer!.stopRealPlay();
+                ezPlayer = nil;
+            }
+            
+            let data:Optional<Dictionary> = call.arguments as? Dictionary<String, Any>
+            let url = data?["url"] as? String //url
+            
+            if url == nil {
+                result(false)
+                return
+            }
+            // 注册播放器
+            ezPlayer = createEzPlayerWithUrl(url: url ?? "")
             let isSuccess = ezPlayer!.startRealPlay()
             ezPlayer!.closeSound()
             print("\(TAG) 开始直播 \(isSuccess ? "成功" : "失败")")
@@ -483,10 +504,22 @@ public class SwiftYsPlayPlugin: NSObject, FlutterPlugin,EZPlayerDelegate{
         }
         return videolevelType
     }
+
+    /// 注册播放器
+    private func createEzPlayerWithUrl(url:String) -> EZPlayer {
+        let player = EZOpenSDK.createPlayer(withUrl: url)
+        // if verifyCode != nil {
+        //     player.setPlayVerifyCode(verifyCode)
+        // }
+        player.delegate = self
+        player.setPlayerView(self.playerView)
+        print("\(TAG)注册播放器成功")
+        return player
+    }
     
     /// 注册播放器
-    private func createEzPlayer(deviceSerial:String,cameraNo:Int?,verifyCode:String?) -> EZPlayer {
-        let player = EZOpenSDK.createPlayer(withDeviceSerial: deviceSerial, cameraNo: cameraNo ?? 1)
+    private func createEzPlayer(deviceSerial:String,cameraNo:Int?,verifyCode:String?,useSubStream:Bool?) -> EZPlayer {
+        let player = EZOpenSDK.createPlayer(withDeviceSerial: deviceSerial, cameraNo: cameraNo ?? 1, useSubStream: useSubStream ?? true)
         if verifyCode != nil {
             player.setPlayVerifyCode(verifyCode)
         }

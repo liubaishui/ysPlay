@@ -118,6 +118,7 @@ class _RealPageState extends State<RealPage> {
       deviceSerial: deviceSerial,
       verifyCode: verifyCode,
       mediaType: YsMediaType.real,
+      cameraNo: 1,
       showOtherUI: (show) {
         setState(() {
           showOtherUI = show;

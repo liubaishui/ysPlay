@@ -15,8 +15,8 @@ class JkLevelBtn extends StatefulWidget {
 }
 
 class _JkLevelBtnState extends State<JkLevelBtn> {
-  List<String> videoLevels = ['流畅', '标清', '高清'];
-  int level = 2;
+  List<String> videoLevels = ['流畅', '高清'];
+  int level = 0;
 
   @override
   Widget build(BuildContext context) {
