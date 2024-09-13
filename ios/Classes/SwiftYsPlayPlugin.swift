@@ -111,7 +111,7 @@ public class SwiftYsPlayPlugin: NSObject, FlutterPlugin,EZPlayerDelegate{
                 return
             }
             // 注册播放器
-            ezPlayer = createEzPlayer(deviceSerial: deviceSerial!, cameraNo: cameraNo, verifyCode: verifyCode, useSubStream: true)
+            ezPlayer = createEzPlayer(deviceSerial: deviceSerial!, cameraNo: cameraNo, verifyCode: verifyCode)
             
             let recordFile = EZDeviceRecordFile()
             recordFile.type = 1;
@@ -171,11 +171,18 @@ public class SwiftYsPlayPlugin: NSObject, FlutterPlugin,EZPlayerDelegate{
                 result(false)
                 return
             }
+            
+            var bSub = false;
+            if useSubStream == nil {
+                bSub = false;
+            } else {
+                bSub = useSubStream!;
+            }
             // 注册播放器
-            ezPlayer = createEzPlayer(deviceSerial: deviceSerial!, cameraNo: cameraNo, verifyCode: verifyCode, useSubStream: useSubStream)
+            ezPlayer = createEzPlayer(deviceSerial: deviceSerial!, cameraNo: cameraNo, verifyCode: verifyCode)
             let isSuccess = ezPlayer!.startRealPlay()
             ezPlayer!.closeSound()
-            print("\(TAG) 开始直播 \(isSuccess ? "成功" : "失败")")
+            print("\(TAG) 开始直播 \(isSuccess ? "成功" : "失败") \(bSub ? "流畅" : "高清")")
             result(isSuccess)
         } else if call.method == "startRealPlayWithUrl" {
             if(ezPlayer != nil){
@@ -292,9 +299,12 @@ public class SwiftYsPlayPlugin: NSObject, FlutterPlugin,EZPlayerDelegate{
             let videoLevelType = getVideoLevelType(videoLevel: videoLevel!)
           
             EZOpenSDK.setVideoLevel(deviceSerial!, cameraNo: cameraNo!, videoLevel: videoLevelType, completion: { error in
-                result(false)
+                if error == nil {
+                    result(true)
+                } else {
+                    result(false)
+                }
             })
-            result(true)
         } else if call.method == "start_config_ap" {
             /// AP配网接口(热点配网)
             let data:Optional<Dictionary> = call.arguments as? Dictionary<String, Any>
@@ -518,8 +528,8 @@ public class SwiftYsPlayPlugin: NSObject, FlutterPlugin,EZPlayerDelegate{
     }
     
     /// 注册播放器
-    private func createEzPlayer(deviceSerial:String,cameraNo:Int?,verifyCode:String?,useSubStream:Bool?) -> EZPlayer {
-        let player = EZOpenSDK.createPlayer(withDeviceSerial: deviceSerial, cameraNo: cameraNo ?? 1, useSubStream: useSubStream ?? true)
+    private func createEzPlayer(deviceSerial:String,cameraNo:Int?,verifyCode:String?) -> EZPlayer {
+        let player = EZOpenSDK.createPlayer(withDeviceSerial: deviceSerial, cameraNo: cameraNo ?? 1)
         if verifyCode != nil {
             player.setPlayVerifyCode(verifyCode)
         }
