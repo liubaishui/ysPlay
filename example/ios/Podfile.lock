@@ -1,14 +1,14 @@
 PODS:
   - "app_settings (3.0.0+1)":
     - Flutter
-  - EZOpenSDK (5.1.2)
+  - EZOpenSDK (5.25.1)
   - Flutter (1.0.0)
   - network_info_plus (0.0.1):
     - Flutter
-  - permission_handler_apple (9.0.4):
+  - permission_handler_apple (9.1.1):
     - Flutter
   - ys_play (0.0.1):
-    - EZOpenSDK (= 5.1.2)
+    - EZOpenSDK (= 5.25.1)
     - Flutter
 
 DEPENDENCIES:
@@ -36,12 +36,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   app_settings: d103828c9f5d515c4df9ee754dabd443f7cedcf3
-  EZOpenSDK: 512613cf70c2f132b12c49d6e8d961750e6f387b
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  EZOpenSDK: 39118f3c2640e489de80aad331acc78654641587
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   network_info_plus: b78876159360f5580608c2cea620d6ceffabd0ad
-  permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
-  ys_play: c975ce33d2f12f3a8dc8acf455770dcb4d31ca64
+  permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
+  ys_play: 906af75646d74b3ebd69b399a49a369168cd723a
 
-PODFILE CHECKSUM: 87e75cff2e496afeda943caa2f162048e10dbaa4
+PODFILE CHECKSUM: a9c2aeeacae1f9fe8e7471081b4b79c7ecab2532
 
-COCOAPODS: 1.11.0
+COCOAPODS: 1.16.0

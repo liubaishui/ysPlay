@@ -226,6 +226,7 @@
 			files = (
 			);
 			inputPaths = (
+				"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}",
 			);
 			name = "Thin Binary";
 			outputPaths = (
@@ -379,11 +380,26 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QWVFQG4HHH;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ys Play";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Runner需要使用手机照相机";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Runner需要使用本地网络权限用于wifi配网";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Runner需要使用定位权限用于wifi配网";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Runner需要使用定位权限用于wifi配网";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Runner需要使用定位权限用于wifi配网";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Runner需要使用手机麦克风";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Runner需要使用手机相册";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Runner需要使用手机相册";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -512,21 +528,34 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/RunnerDebug.entitlements;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D86CB5C86X;
+				DEVELOPMENT_TEAM = QWVFQG4HHH;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ys Play";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Runner需要使用手机照相机";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Runner需要使用本地网络权限用于wifi配网";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Runner需要使用定位权限用于wifi配网";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Runner需要使用定位权限用于wifi配网";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Runner需要使用定位权限用于wifi配网";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Runner需要使用手机麦克风";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Runner需要使用手机相册";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Runner需要使用手机相册";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hxjt.yhj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hxjt.yhjax;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = dev_yhj_pp;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -541,22 +570,34 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D86CB5C86X;
+				DEVELOPMENT_TEAM = QWVFQG4HHH;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ys Play";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Runner需要使用手机照相机";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Runner需要使用本地网络权限用于wifi配网";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Runner需要使用定位权限用于wifi配网";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Runner需要使用定位权限用于wifi配网";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Runner需要使用定位权限用于wifi配网";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Runner需要使用手机麦克风";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Runner需要使用手机相册";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Runner需要使用手机相册";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.ysPlayExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hxjt.yhjax;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = dis_yhj_pp;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
